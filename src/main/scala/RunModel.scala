@@ -17,12 +17,12 @@ class RunModelActor extends Actor {
   def runModel = {
 
     println("=====================From runModel Method========================")
-    val userName = "zettasys"
+    val userName = "abc"
     val password = "password"
     val projectId = "475"
     val jobId = "63f6c9e4-21ac-4823-a469-98e0cae8f6a1"
     val ngrams = "80"
-    val scriptFileName = s"runzettasense.sh"
+    val scriptFileName = s"runabc.sh"
     val runModelScript = "/var/lib/zettasense/" + scriptFileName
 
     val command = s"bash $runModelScript $userName $password $projectId $jobId $ngrams"
