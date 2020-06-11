@@ -2,6 +2,7 @@ package Controllers
 
 import Entities.Employee
 import akka.actor.ActorRef
+import exceptions.{ErrorCodes, InvalidInputException}
 import org.json4s.DefaultFormats
 import org.json4s.jackson.JsonMethods.parse
 import repositories.ImplEmployeeRepository
@@ -34,16 +35,4 @@ object EmployeeController extends EmployeeControllerComponent {
     ImplEmployeeRepository.getEmployees
   }
 
-}
-
-trait MyException extends Exception
-
-case class InvalidInputException(errorCode: String = ErrorCodes.INVALID_INPUT_EXCEPTION, message: String = ErrorMessages.INVALID_INPUT, exception: Throwable) extends MyException
-
-object ErrorCodes {
-  val INVALID_INPUT_EXCEPTION: String = "1010"
-}
-
-object ErrorMessages {
-  val INVALID_INPUT: String = "Invalid Input"
 }

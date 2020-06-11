@@ -4,7 +4,7 @@
 		module="myproject_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20200611140415"
+		publication="20200611210724"
 	>
 		<description>
 		MyProject
@@ -38,5 +38,7 @@
 		<dependency org="com.typesafe.akka" name="akka-http-experimental_2.11" rev="1.0" conf="compile->default(compile)"/>
 		<dependency org="org.json4s" name="json4s-jackson_2.11" rev="3.2.11" conf="compile->default(compile)"/>
 		<dependency org="joda-time" name="joda-time" rev="2.8.2" conf="compile->default(compile)"/>
+		<dependency org="org.scala-lang" name="scala-xml" rev="2.11.0-M4" conf="compile->default(compile)"/>
+		<dependency org="org.scala-lang.modules" name="scala-parser-combinators_2.11" rev="1.0.6" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

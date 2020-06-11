@@ -27,7 +27,7 @@ class EmployeeRest(controller: EmployeeControllerComponent) extends Directives {
             entity(as[String]) { data =>
               complete {
                 controller.insertEmployeeController(data).map { result =>
-                  HttpResponse(status = StatusCodes.OK, entity = HttpEntity(MediaTypes.`application/json`, compact(Extraction.decompose(result))))
+                  HttpResponse(status = StatusCodes.OK, entity = HttpEntity(contentType = MediaTypes.`application/json`, string = compact(Extraction.decompose(result))))
                 }
               }
             }
@@ -89,3 +89,4 @@ class EmployeeRest(controller: EmployeeControllerComponent) extends Directives {
 
 
 }
+
