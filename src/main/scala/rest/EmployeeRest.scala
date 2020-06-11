@@ -1,15 +1,12 @@
 package rest
 
 import Controllers.EmployeeControllerComponent
-import Entities.Employee
-import akka.actor.{ActorRef, ActorSystem}
+import akka.actor.ActorSystem
 import akka.http.scaladsl.model.{HttpEntity, HttpResponse, MediaTypes, StatusCodes}
 import akka.http.scaladsl.server.Directives
 import akka.stream.ActorMaterializer
-import com.typesafe.config.ConfigFactory
 import org.json4s.jackson.JsonMethods._
 import org.json4s.{DefaultFormats, Extraction}
-import repositories.ImplEmployeeRepository
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -24,15 +21,19 @@ class EmployeeRest(controller: EmployeeControllerComponent) extends Directives {
     post {
       headerValueByName("apiKey") { token =>
         authorize(validateApiKey(token)) {
-          entity(as[String]) { data =>
-            complete {
-              controller.insertEmployeeController(data).map { result =>
+          //extract(_.request.uri.query) { params =>
+          // val x = params.toList //comes as list of tuples
+         // parameters('value1.as[String], 'value2.as[String]) { (key, value) =>
+            entity(as[String]) { data =>
+              complete {
+                controller.insertEmployeeController(data).map { result =>
                   HttpResponse(status = StatusCodes.OK, entity = HttpEntity(MediaTypes.`application/json`, compact(Extraction.decompose(result))))
+                }
               }
             }
           }
         }
-      }
+      //}
     } ~ get {
       complete {
         controller.getAllEmployees().map { result =>
@@ -79,7 +80,7 @@ class EmployeeRest(controller: EmployeeControllerComponent) extends Directives {
    }*/
 
   def validateApiKey(apiKey: String): Boolean = {
-    val apiKeysJson = ConfigFactory.load().getString("apiKeys").trim
+//    val apiKeysJson = ConfigFactory.load().getString("apiKeys").trim
     //add other validations here
     true
   }
