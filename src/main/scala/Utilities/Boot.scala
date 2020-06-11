@@ -6,7 +6,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.{Route, RouteConcatenation}
 import akka.stream.ActorMaterializer
-import rest.{AddressRest, EmployeeRest}
+import rest.{AddressRest, EmployeeRest, QueryParamSegmentRest}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -17,7 +17,7 @@ trait RestService extends RouteConcatenation with CORSSupport with GeneralActors
   override implicit def system: ActorSystem = ActorSystemContainer.system
 
   def allRoutes: Route = {
-    val availableRoutes = new EmployeeRest(EmployeeController).routes ~ new AddressRest(AddressController).routes
+    val availableRoutes = new EmployeeRest(EmployeeController).routes ~ new AddressRest(AddressController).routes ~ new QueryParamSegmentRest(EmployeeController).routes
     availableRoutes
   }
 

@@ -89,4 +89,3 @@ class EmployeeRest(controller: EmployeeControllerComponent) extends Directives {
 
 
 }
-
