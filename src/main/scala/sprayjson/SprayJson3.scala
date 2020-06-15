@@ -3,7 +3,7 @@ package sprayjson
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
-object SprayJson1 extends App {
+object SprayJson1aaaa extends App {
 
   val source = """{ "some": "JSON source" }"""
   val jsonAst1: JsValue = source.parseJson // or JsonParser(source)
@@ -36,7 +36,7 @@ object SprayJson2 extends App {
     def write(address: Address): JsValue = {
       JsObject(
         "street" -> address.street.toJson,
-        "city" -> address.city.toJson,
+        "city" -> address.city.toJson
       )
     }
 

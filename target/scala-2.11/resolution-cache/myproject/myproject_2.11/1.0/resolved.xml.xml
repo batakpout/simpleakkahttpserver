@@ -4,7 +4,7 @@
 		module="myproject_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20200612172659"
+		publication="20200615223701"
 	>
 		<description>
 		MyProject
@@ -41,5 +41,6 @@
 		<dependency org="org.scala-lang" name="scala-xml" rev="2.11.0-M4" conf="compile->default(compile)"/>
 		<dependency org="org.scala-lang.modules" name="scala-parser-combinators_2.11" rev="1.0.6" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-http-spray-json_2.11" rev="10.1.12" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.play" name="play-json_2.11" rev="2.7.4" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

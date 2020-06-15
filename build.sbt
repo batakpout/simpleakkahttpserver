@@ -12,7 +12,9 @@ libraryDependencies ++= Seq(
   "org.json4s" %% "json4s-jackson" % "3.2.11", "joda-time" % "joda-time" % "2.8.2",
   "org.scala-lang" % "scala-xml" % "2.11.0-M4",
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.6",
-  "com.typesafe.akka" %% "akka-http-spray-json" % "10.1.12"
+  "com.typesafe.akka" %% "akka-http-spray-json" % "10.1.12",
+  "com.typesafe.play" %% "play-json" % "2.7.4"
+
 
 )
 
