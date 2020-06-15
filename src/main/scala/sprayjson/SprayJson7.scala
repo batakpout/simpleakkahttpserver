@@ -20,12 +20,12 @@ object SprayJson7 extends App {
                                chatUserId: String, chatPassword: String, engineId: String, authPassword: String, privacyPassword: String,
                                applicationMonitorsTemplateId: String, networkElementTemplateId: String, nodeActionTemplateId: String,
                                primaryPort: Int, subtendedNode: String, lastSynchronizationTimestamp: String,
-                               lastInventorySynchronizationTimestamp: String, protocol: String, connectionState: String,deviceType: String,
+                               lastInventorySynchronizationTimestamp: String, protocol: String, connectionState: String, deviceType: String,
                                connectionType: String, provisionedState: String, securityLevel: String, authProtocol: String,
                                privacyProtocol: String, chatRequired: Boolean, crlfRequired: Boolean, sSHuserid: String, sSHpassword: String,
                                session: String, tenantName: String, bgpAsIdentifier: String, ospfRouterId: String, alternateName: String,
-                               xid: String, availabilityState: String, secondaryIp: String, secondaryPort: String, longitude: Double, latitude: Long,
-                               description: String, craft: String,availabilityStateRequired: Boolean)
+                               xid: String, availabilityState: String, secondaryIp: String, secondaryPort: String, longitude: Double, latitude: Double,
+                               description: String, craft: String, availabilityStateRequired: Boolean)
 
   implicit val deviceCredentialParentFormat = new RootJsonFormat[DeviceCredentialParent] {
     def write(dcParent: DeviceCredentialParent): JsValue = {
@@ -95,7 +95,7 @@ object SprayJson7 extends App {
         "primary-ip" -> dc.primaryIp,
         "userid" -> dc.userId,
         "password" -> dc.password,
-        "vendor-name" ->  dc.vendorName,
+        "vendor-name" -> dc.vendorName,
         "product-name" -> dc.productName,
         "product-version" -> dc.productVersion,
         "profile" -> dc.profile,
@@ -103,6 +103,7 @@ object SprayJson7 extends App {
         "location" -> dc.location,
         "chat-userid" -> dc.chatUserId,
         "chat-password" -> dc.chatPassword,
+        "engineid" -> dc.engineId,
         "auth-password" -> dc.authPassword,
         "privacy-password" -> dc.privacyPassword,
         "application-monitors-template-id" -> dc.applicationMonitorsTemplateId,
@@ -111,7 +112,7 @@ object SprayJson7 extends App {
         "parent" -> dc.dcParent.toJson,
         "administrativeDomain" -> dc.dcAdminDomain.toJson,
         "primary-port" -> dc.primaryPort,
-        "subtended-node" ->dc.subtendedNode,
+        "subtended-node" -> dc.subtendedNode,
         "mediation-server-group" -> dc.dcMediationServerGroup.toJson,
         "lastSynchronizationTimestamp" -> dc.lastSynchronizationTimestamp,
         "last-inventory-synchronization-timestamp" -> dc.lastInventorySynchronizationTimestamp,
@@ -129,8 +130,8 @@ object SprayJson7 extends App {
         "SSHpassword" -> dc.sSHpassword,
         "session" -> dc.session,
         "tenantName" -> dc.tenantName,
-        "previous-hop" -> dc.previousHop.toJson
-      "bgp-as-identifier" -> dc.bgpAsIdentifier,
+        "previous-hop" -> dc.previousHop.toJson,
+        "bgp-as-identifier" -> dc.bgpAsIdentifier,
         "ospf-router-id" -> dc.ospfRouterId,
         "alternate-name" -> dc.alternateName,
         "xid" -> dc.xid,
@@ -141,15 +142,30 @@ object SprayJson7 extends App {
         "latitude" -> dc.latitude,
         "description" -> dc.description,
         "craft" -> dc.craft,
-      "availabilitystate-required" -> dc.availabilityStateRequired
+        "availabilitystate-required" -> dc.availabilityStateRequired
       )
     }
 
     def read(value: JsValue): DeviceCredentials = {
       val fields = value.asJsObject.fields
       DeviceCredentials(fields("parent").convertTo[DeviceCredentialParent], fields("administrativeDomain").convertTo[DeviceCredentialAdministrativeDomain],
-        fields("mediation-server-group").convertTo[DeviceCredentialMediationServerGroup], fields("previous-hop").convertTo[PreviousHop],
-        fields("object-type").convertTo[String], fields("name").convertTo[String])
+        fields("mediation-server-group").convertTo[DeviceCredentialMediationServerGroup], fields("previous-hop").convertTo[PreviousHop], fields("object-type").convertTo[String],
+        fields("name").convertTo[String], fields("id").convertTo[String], fields("primary-ip").convertTo[String],
+        fields("userid").convertTo[String], fields("password").convertTo[String], fields("vendor-name").convertTo[String], fields("product-name").convertTo[String], fields("product-version").convertTo[String],
+        fields("profile").convertTo[String], fields("office").convertTo[String], fields("location").convertTo[String], fields("chat-userid").convertTo[String], fields("chat-password").convertTo[String],
+        fields("engineid").convertTo[String], fields("auth-password").convertTo[String], fields("privacy-password").convertTo[String], fields("application-monitors-template-id").convertTo[String],
+        fields("network-element-template-id").convertTo[String],
+        fields("node-action-template-id").convertTo[String],
+        fields("primary-port").convertTo[Int],
+        fields("subtended-node").convertTo[String],
+        fields("lastSynchronizationTimestamp").convertTo[String], fields("last-inventory-synchronization-timestamp").convertTo[String],
+        fields("protocol").convertTo[String], fields("connection-state").convertTo[String], fields("device-type").convertTo[String],
+        fields("connection-typ").convertTo[String], fields("provisioned-state").convertTo[String], fields("security-level").convertTo[String], fields("auth-protocol").convertTo[String],
+        fields("privacy-protocol").convertTo[String], fields("chat-required").convertTo[Boolean], fields("crlf-required").convertTo[Boolean], fields("SSHuserid").convertTo[String], fields("SSHpassword").convertTo[String],
+        fields("session").convertTo[String], fields("tenantName").convertTo[String],, fields("bgp-as-identifier").convertTo[String], fields("ospf-router-id").convertTo[String],
+        fields("alternate-name").convertTo[String], fields("xid").convertTo[String], fields("availability-state").convertTo[String], fields("secondary-ip").convertTo[String], fields("secondary-port").convertTo[String],
+        fields("longitude").convertTo[Double], fields("latitude").convertTo[Double], fields("description").convertTo[String], fields("craft").convertTo[String],
+        fields("availabilitystate-required").convertTo[Boolean])
     }
   }
 
