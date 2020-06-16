@@ -162,14 +162,20 @@ object SprayJson7 extends App {
         fields("protocol").convertTo[String], fields("connection-state").convertTo[String], fields("device-type").convertTo[String],
         fields("connection-type").convertTo[String], fields("provisioned-state").convertTo[String], fields("security-level").convertTo[String], fields("auth-protocol").convertTo[String],
         fields("privacy-protocol").convertTo[String], fields("chat-required").convertTo[Boolean], fields("crlf-required").convertTo[Boolean], fields("SSHuserid").convertTo[String], fields("SSHpassword").convertTo[String],
-        fields("session").convertTo[String], fields("tenantName").convertTo[String],, fields("bgp-as-identifier").convertTo[String], fields("ospf-router-id").convertTo[String],
+        fields("session").convertTo[String], fields("tenantName").convertTo[String], fields("bgp-as-identifier").convertTo[String], fields("ospf-router-id").convertTo[String],
         fields("alternate-name").convertTo[String], fields("xid").convertTo[String], fields("availability-state").convertTo[String], fields("secondary-ip").convertTo[String], fields("secondary-port").convertTo[String],
         fields("longitude").convertTo[Double], fields("latitude").convertTo[Double], fields("description").convertTo[String], fields("craft").convertTo[String],
         fields("availabilitystate-required").convertTo[Boolean])
     }
   }
 
-  val json = """[{"object-type":"o1","name":"d1","parent":{"object-type":"subnetwork","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a"},"administrativeDomain":{"object-type":"administrative-domain","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a","name":"Default"},"mediation-server-group":{"object-type":"mediation-server-group","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a","name":"med"},"previous-hop":{"object-type":"network-element","id":"","name":""}}]"""
-  println(json.parseJson.convertTo[List[DeviceCredentials]])
+ val json = """[{"object-type":"network-element","name":"FTPRSDEA01M","id":"f103fb11-20a1-4217-8e77-32b761bf9225","primary-ip":"192.168.1.47","userid":"","password":"","vendor-name":"Nicira, Inc.","product-name":"Open vSwitch","product-version":"2.3.1-git4750c96","profile":"open-vswitch","office":"","location":"","chat-userid":"","chat-password":"","engineid":"","auth-password":"","privacy-password":"","application-monitors-template-id":"e30bd3ae-9764-484e-aaee-bf8471d55616","network-element-template-id":"c3869363-9d01-491f-b727-8969d489cefa","node-action-template-id":"5a3efef8-b0fb-4b7b-a2db-2e3742fe6c90","parent":{"object-type":"subnetwork","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a"},"administrativeDomain":{"object-type":"administrative-domain","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a","name":"Default"},"primary-port":80,"subtended-node":"","mediation-server-group":{"object-type":"mediation-server-group","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a","name":"med"},"lastSynchronizationTimestamp":"Thu July 21 16:26:09 IST 2016","last-inventory-synchronization-timestamp":"Thu July 21 16:26:09 IST 2016","protocol":"None","connection-state":"None","device-type":"Cloud Host","connection-type":"Passive","provisioned-state":"Managed","security-level":"","auth-protocol":"","privacy-protocol":"","chat-required":false,"crlf-required":false,"SSHuserid":"","SSHpassword":"","session":"","tenantName":"","previous-hop":{"object-type":"network-element","id":"","name":""},"bgp-as-identifier":"","ospf-router-id":"","alternate-name":"","xid":"","availability-state":"Available","secondary-ip":"null","secondary-port":"null","longitude":0,"latitude":0,"description":"newDes","craft":"null","availabilitystate-required":true}]"""
+  val x: List[DeviceCredentials] = json.parseJson.convertTo[List[DeviceCredentials]]
+  val res: List[DeviceCredentials] = x.map{ x =>
+    x.copy(sSHuserid = "root", sSHpassword = "123paswword")
+  }
+
+  println(res.toJson)
+
 
 }
