@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="test"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20200615224118"/>
+		date="20200624205711"/>
 	<dependencies>
 		<module organisation="org.scala-lang.modules" name="scala-parser-combinators_2.11">
 			<revision name="1.0.6" status="release" pubdate="20170502185758" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="27">
@@ -27,7 +27,7 @@
 				<metadata-artifact status="no" details="" size="4751" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.typesafe.play\play-json_2.11\ivy-2.7.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/play-json_2.11/2.7.4/play-json_2.11-2.7.4.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.7.4" rev-constraint-default="2.7.4" rev-constraint-dynamic="2.7.4" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="play-json_2.11" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="53787" time="32249" location="C:\Users\aamir.wani\.ivy2\cache\com.typesafe.play\play-json_2.11\srcs\play-json_2.11-2.7.4-sources.jar">
+					<artifact name="play-json_2.11" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="53787" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.typesafe.play\play-json_2.11\srcs\play-json_2.11-2.7.4-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/play/play-json_2.11/2.7.4/play-json_2.11-2.7.4-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -39,7 +39,7 @@
 				<metadata-artifact status="no" details="" size="29617" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.datatype\jackson-datatype-jdk8\ivy-2.9.8.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.9.8/jackson-datatype-jdk8-2.9.8.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.9.8" rev-constraint-default="2.9.8" rev-constraint-dynamic="2.9.8" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="jackson-datatype-jdk8" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="19319" time="13017" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.datatype\jackson-datatype-jdk8\srcs\jackson-datatype-jdk8-2.9.8-sources.jar">
+					<artifact name="jackson-datatype-jdk8" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="19319" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.datatype\jackson-datatype-jdk8\srcs\jackson-datatype-jdk8-2.9.8-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.9.8/jackson-datatype-jdk8-2.9.8-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -51,7 +51,7 @@
 				<metadata-artifact status="no" details="" size="7945" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-annotations\ivy-2.9.8.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.9.8/jackson-annotations-2.9.8.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.9.8" rev-constraint-default="2.9.8" rev-constraint-dynamic="2.9.8" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="jackson-annotations" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="68199" time="37880" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-annotations\srcs\jackson-annotations-2.9.8-sources.jar">
+					<artifact name="jackson-annotations" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="68199" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-annotations\srcs\jackson-annotations-2.9.8-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.9.8/jackson-annotations-2.9.8-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -63,7 +63,7 @@
 				<metadata-artifact status="no" details="" size="2719" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.typesafe.play\play-functional_2.11\ivy-2.7.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/play-functional_2.11/2.7.4/play-functional_2.11-2.7.4.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.7.4" rev-constraint-default="2.7.4" rev-constraint-dynamic="2.7.4" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="play-functional_2.11" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="9924" time="28966" location="C:\Users\aamir.wani\.ivy2\cache\com.typesafe.play\play-functional_2.11\srcs\play-functional_2.11-2.7.4-sources.jar">
+					<artifact name="play-functional_2.11" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="9924" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.typesafe.play\play-functional_2.11\srcs\play-functional_2.11-2.7.4-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/play/play-functional_2.11/2.7.4/play-functional_2.11-2.7.4-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -87,7 +87,7 @@
 				<metadata-artifact status="no" details="" size="6955" time="0" location="C:\Users\aamir.wani\.ivy2\cache\joda-time\joda-time\ivy-2.10.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/joda-time/joda-time/2.10.1/joda-time-2.10.1.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="joda-time" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="804319" time="110088" location="C:\Users\aamir.wani\.ivy2\cache\joda-time\joda-time\srcs\joda-time-2.10.1-sources.jar">
+					<artifact name="joda-time" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="804319" time="0" location="C:\Users\aamir.wani\.ivy2\cache\joda-time\joda-time\srcs\joda-time-2.10.1-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/joda-time/joda-time/2.10.1/joda-time-2.10.1-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -303,7 +303,7 @@
 				<metadata-artifact status="no" details="" size="29911" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.datatype\jackson-datatype-jsr310\ivy-2.9.8.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.9.8/jackson-datatype-jsr310-2.9.8.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.9.8" rev-constraint-default="2.9.8" rev-constraint-dynamic="2.9.8" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="jackson-datatype-jsr310" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="67246" time="13028" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.datatype\jackson-datatype-jsr310\srcs\jackson-datatype-jsr310-2.9.8-sources.jar">
+					<artifact name="jackson-datatype-jsr310" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="67246" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.datatype\jackson-datatype-jsr310\srcs\jackson-datatype-jsr310-2.9.8-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.9.8/jackson-datatype-jsr310-2.9.8-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -315,7 +315,7 @@
 				<metadata-artifact status="no" details="" size="23761" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-databind\ivy-2.9.8.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.9.8/jackson-databind-2.9.8.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.9.8" rev-constraint-default="2.9.8" rev-constraint-dynamic="2.9.8" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="jackson-databind" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="996534" time="110740" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-databind\srcs\jackson-databind-2.9.8-sources.jar">
+					<artifact name="jackson-databind" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="996534" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-databind\srcs\jackson-databind-2.9.8-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.9.8/jackson-databind-2.9.8-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -327,7 +327,7 @@
 				<metadata-artifact status="no" details="" size="23044" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-core\ivy-2.9.8.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.9.8/jackson-core-2.9.8.pom"/>
 				<caller organisation="myproject" name="myproject$sources" conf="test, compile, runtime" rev="2.9.8" rev-constraint-default="2.9.8" rev-constraint-dynamic="2.9.8" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="jackson-core" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="336570" time="73548" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-core\srcs\jackson-core-2.9.8-sources.jar">
+					<artifact name="jackson-core" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="336570" time="0" location="C:\Users\aamir.wani\.ivy2\cache\com.fasterxml.jackson.core\jackson-core\srcs\jackson-core-2.9.8-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.9.8/jackson-core-2.9.8-sources.jar"/>
 					</artifact>
 				</artifacts>
