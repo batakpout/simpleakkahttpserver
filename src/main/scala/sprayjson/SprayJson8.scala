@@ -50,7 +50,7 @@ object SprayJson8 extends App {
 
   }
 
-  val json = """{"parent":{"object-type":"abc","id":"11"},"name": null}"""
+  val json = """{"parent":{"object-type":"","id":"11"},"name": null}"""
   val res: DeviceDetails = json.parseJson.convertTo[DeviceDetails]
  val x: JsValue = res.toJson
  println(res)

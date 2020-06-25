@@ -5,27 +5,27 @@ import spray.json._
 
 object SprayJson7 extends App {
 
-  case class DeviceCredentialParent(objectType: String, id: String)
+  case class DeviceCredentialParent(objectType: Option[String], id: Option[String], name: Option[String])
 
-  case class DeviceCredentialAdministrativeDomain(objectType: String, id: String, name: String)
+  case class DeviceCredentialAdministrativeDomain(objectType: Option[String], name: Option[String])
 
-  case class DeviceCredentialMediationServerGroup(objectType: String, id: String, name: String)
+  case class DeviceCredentialMediationServerGroup(objectType: Option[String], id: Option[String], name: Option[String])
 
-  case class PreviousHop(objectType: String, id: String, name: String)
+  case class PreviousHop(objectType: Option[String], id: Option[String], name: Option[String])
 
   case class DeviceDetails(dcParent: DeviceCredentialParent, dcAdminDomain: DeviceCredentialAdministrativeDomain,
                            dcMediationServerGroup: DeviceCredentialMediationServerGroup,
-                           previousHop: PreviousHop, objectType: String, name: String, id: String, primaryIp: String, userId: String, password: String,
-                           vendorName: String, productName: String, productVersion: String, profile: String, office: String, location: String,
-                           chatUserId: String, chatPassword: String, engineId: String, authPassword: String, privacyPassword: String,
-                           applicationMonitorsTemplateId: String, networkElementTemplateId: String, nodeActionTemplateId: String,
-                           primaryPort: Int, subtendedNode: String, lastSynchronizationTimestamp: String,
-                           lastInventorySynchronizationTimestamp: String, protocol: String, connectionState: String, deviceType: String,
-                           connectionType: String, provisionedState: String, securityLevel: String, authProtocol: String,
-                           privacyProtocol: String, chatRequired: Boolean, crlfRequired: Boolean, sSHuserid: String, sSHpassword: String,
-                           session: String, tenantName: String, bgpAsIdentifier: String, ospfRouterId: String, alternateName: String,
-                           xid: String, availabilityState: String, secondaryIp: String, secondaryPort: String, longitude: Double, latitude: Double,
-                           description: String, craft: String, availabilityStateRequired: Boolean)
+                           previousHop: PreviousHop, objectType: Option[String], name: Option[String], id: Option[String], primaryIp: Option[String], userId: Option[String], password: Option[String],
+                           vendorName: Option[String], productName: Option[String], productVersion: Option[String], profile: Option[String], office: Option[String], location: Option[String],
+                           chatUserId: Option[String], chatPassword: Option[String], engineId: Option[String],
+                           applicationMonitorsTemplateId: Option[String], networkElementTemplateId: Option[String], nodeActionTemplateId: Option[String],
+                           primaryPort: Option[Int], subtendedNode: Option[String],
+                           lastInventorySynchronizationTimestamp: Option[String], protocol: Option[String], connectionState: Option[String], deviceType: Option[String],
+                           connectionType: Option[String], provisionedState: Option[String], authProtocol: Option[String],
+                           privacyProtocol: Option[String], chatRequired: Option[Boolean], crlfRequired: Option[Boolean], sSHuserid: Option[String], sSHpassword: Option[String],
+                           session: Option[String], tenantName: Option[String], bgpAsIdentifier: Option[String], ospfRouterId: Option[String], alternateName: Option[String],
+                           xid: Option[String], availabilityState: Option[String], secondaryIp: Option[String], secondaryPort: Option[String], longitude: Option[Double], latitude: Option[Double],
+                           description: Option[String], craft: Option[String], availabilityStateRequired: Option[Boolean])
 
   object DeviceCredentialParent {
 
@@ -33,13 +33,16 @@ object SprayJson7 extends App {
       def write(dcParent: DeviceCredentialParent): JsValue = {
         JsObject(
           "object-type" -> dcParent.objectType.toJson,
-          "id" -> dcParent.id.toJson
+          "id" -> dcParent.id.toJson,
+          "name" -> dcParent.name.toJson
         )
       }
 
       def read(value: JsValue): DeviceCredentialParent = {
-        val fields = value.asJsObject.fields
-        DeviceCredentialParent(fields("object-type").convertTo[String], fields("id").convertTo[String])
+         val fields = value.asJsObject.fields.toList.map { case (key, value) =>
+          if(value == JsNull) (key -> None) else (key -> Some(value))
+        }.toMap
+        DeviceCredentialParent(fields("object-type").map(_.convertTo[String]), fields("id").map(_.convertTo[String]), fields("name").map(_.convertTo[String]))
       }
     }
 
@@ -50,34 +53,37 @@ object SprayJson7 extends App {
       def write(deviceCredentialAdministrativeDomain: DeviceCredentialAdministrativeDomain): JsValue = {
         JsObject(
           "object-type" -> deviceCredentialAdministrativeDomain.objectType.toJson,
-          "id" -> deviceCredentialAdministrativeDomain.id.toJson,
           "name" -> deviceCredentialAdministrativeDomain.name.toJson
         )
       }
 
       def read(value: JsValue): DeviceCredentialAdministrativeDomain = {
-        val fields = value.asJsObject.fields
-        DeviceCredentialAdministrativeDomain(fields("object-type").convertTo[String], fields("id").convertTo[String], fields("name").convertTo[String])
+         val fields = value.asJsObject.fields.toList.map { case (key, value) =>
+          if(value == JsNull) (key -> None) else (key -> Some(value))
+        }.toMap
+        DeviceCredentialAdministrativeDomain(fields("object-type").map(_.convertTo[String]), fields("name").map(_.convertTo[String]))
       }
     }
   }
 
- object DeviceCredentialMediationServerGroup {
-   implicit val deviceCredentialMediationServerGroupFormat = new RootJsonFormat[DeviceCredentialMediationServerGroup] {
-     def write(deviceCredentialMediationServerGroup: DeviceCredentialMediationServerGroup): JsValue = {
-       JsObject(
-         "object-type" -> deviceCredentialMediationServerGroup.objectType.toJson,
-         "id" -> deviceCredentialMediationServerGroup.id.toJson,
-         "name" -> deviceCredentialMediationServerGroup.name.toJson
-       )
-     }
+  object DeviceCredentialMediationServerGroup {
+    implicit val deviceCredentialMediationServerGroupFormat = new RootJsonFormat[DeviceCredentialMediationServerGroup] {
+      def write(deviceCredentialMediationServerGroup: DeviceCredentialMediationServerGroup): JsValue = {
+        JsObject(
+          "object-type" -> deviceCredentialMediationServerGroup.objectType.toJson,
+          "id" -> deviceCredentialMediationServerGroup.id.toJson,
+          "name" -> deviceCredentialMediationServerGroup.name.toJson
+        )
+      }
 
-     def read(value: JsValue): DeviceCredentialMediationServerGroup = {
-       val fields = value.asJsObject.fields
-       DeviceCredentialMediationServerGroup(fields("object-type").convertTo[String], fields("id").convertTo[String], fields("name").convertTo[String])
-     }
-   }
- }
+      def read(value: JsValue): DeviceCredentialMediationServerGroup = {
+         val fields = value.asJsObject.fields.toList.map { case (key, value) =>
+          if(value == JsNull) (key -> None) else (key -> Some(value))
+        }.toMap
+        DeviceCredentialMediationServerGroup(fields("object-type").map(_.convertTo[String]), fields("id").map(_.convertTo[String]), fields("name").map(_.convertTo[String]))
+      }
+    }
+  }
 
   object PreviousHop {
     implicit val previousHopFormat = new RootJsonFormat[PreviousHop] {
@@ -90,8 +96,10 @@ object SprayJson7 extends App {
       }
 
       def read(value: JsValue): PreviousHop = {
-        val fields = value.asJsObject.fields
-        PreviousHop(fields("object-type").convertTo[String], fields("id").convertTo[String], fields("name").convertTo[String])
+         val fields = value.asJsObject.fields.toList.map { case (key, value) =>
+          if(value == JsNull) (key -> None) else (key -> Some(value))
+        }.toMap
+        PreviousHop(fields("object-type").map(_.convertTo[String]), fields("id").map(_.convertTo[String]), fields("name").map(_.convertTo[String]))
       }
     }
   }
@@ -108,91 +116,89 @@ object SprayJson7 extends App {
           "name" -> dc.name.toJson,
           "id" -> dc.id.toJson,
           "primary-ip" -> dc.primaryIp.toJson,
+          "primary-port" -> dc.primaryPort.toJson,
+          "protocol" -> dc.protocol.toJson,
+          "session" -> dc.session.toJson,
           "userid" -> dc.userId.toJson,
+          "SSHuserid" -> dc.sSHuserid.toJson,
           "password" -> dc.password.toJson,
+          "SSHpassword" -> dc.sSHpassword.toJson,
+          "connection-state" -> dc.connectionState.toJson,
           "vendor-name" -> dc.vendorName.toJson,
+          "device-type" -> dc.deviceType.toJson,
           "product-name" -> dc.productName.toJson,
           "product-version" -> dc.productVersion.toJson,
           "profile" -> dc.profile.toJson,
+          "connection-type" -> dc.connectionType.toJson,
           "office" -> dc.office.toJson,
           "location" -> dc.location.toJson,
-          "chat-userid" -> dc.chatUserId.toJson,
-          "chat-password" -> dc.chatPassword.toJson,
-          "engineid" -> dc.engineId.toJson,
-          "auth-password" -> dc.authPassword.toJson,
-          "privacy-password" -> dc.privacyPassword.toJson,
-          "application-monitors-template-id" -> dc.applicationMonitorsTemplateId.toJson,
-          "network-element-template-id" -> dc.networkElementTemplateId.toJson,
-          "node-action-template-id" -> dc.nodeActionTemplateId.toJson,
-          "primary-port" -> dc.primaryPort.toJson,
-          "subtended-node" -> dc.subtendedNode.toJson,
-          "lastSynchronizationTimestamp" -> dc.lastSynchronizationTimestamp.toJson,
-          "last-inventory-synchronization-timestamp" -> dc.lastInventorySynchronizationTimestamp.toJson,
-          "protocol" -> dc.protocol.toJson,
-          "connection-state" -> dc.connectionState.toJson,
-          "device-type" -> dc.deviceType.toJson,
-          "connection-type" -> dc.connectionType.toJson,
-          "provisioned-state" -> dc.provisionedState.toJson,
-          "security-level" -> dc.securityLevel.toJson,
-          "auth-protocol" -> dc.authProtocol.toJson,
-          "privacy-protocol" -> dc.privacyProtocol.toJson,
-          "chat-required" -> dc.chatRequired.toJson,
-          "crlf-required" -> dc.crlfRequired.toJson,
-          "SSHuserid" -> dc.sSHuserid.toJson,
-          "SSHpassword" -> dc.sSHpassword.toJson,
-          "session" -> dc.session.toJson,
-          "tenantName" -> dc.tenantName.toJson,
-          "bgp-as-identifier" -> dc.bgpAsIdentifier.toJson,
-          "ospf-router-id" -> dc.ospfRouterId.toJson,
-          "alternate-name" -> dc.alternateName.toJson,
           "xid" -> dc.xid.toJson,
+          "availabilitystate-required" -> dc.availabilityStateRequired.toJson,
           "availability-state" -> dc.availabilityState.toJson,
           "secondary-ip" -> dc.secondaryIp.toJson,
           "secondary-port" -> dc.secondaryPort.toJson,
           "longitude" -> dc.longitude.toJson,
           "latitude" -> dc.latitude.toJson,
           "description" -> dc.description.toJson,
+          "provisioned-state" -> dc.provisionedState.toJson,
+          "chat-required" -> dc.chatRequired.toJson,
+          "chat-userid" -> dc.chatUserId.toJson,
+          "chat-password" -> dc.chatPassword.toJson,
+          "crlf-required" -> dc.crlfRequired.toJson,
           "craft" -> dc.craft.toJson,
-          "availabilitystate-required" -> dc.availabilityStateRequired.toJson
+          "subtended-node" -> dc.subtendedNode.toJson,
+          "last-inventory-synchronization-timestamp" -> dc.lastInventorySynchronizationTimestamp.toJson,
+          "network-element-template-id" -> dc.networkElementTemplateId.toJson,
+          "application-monitors-template-id" -> dc.applicationMonitorsTemplateId.toJson,
+          "engineid" -> dc.engineId.toJson,
+          "auth-protocol" -> dc.authProtocol.toJson,
+          "privacy-protocol" -> dc.privacyProtocol.toJson,
+          "tenantName" -> dc.tenantName.toJson,
+          "alternate-name" -> dc.alternateName.toJson,
+          "bgp-as-identifier" -> dc.bgpAsIdentifier.toJson,
+          "ospf-router-id" -> dc.ospfRouterId.toJson,
+          "node-action-template-id" -> dc.nodeActionTemplateId.toJson
+
         )
       }
 
       def read(value: JsValue): DeviceDetails = {
-        val fields = value.asJsObject.fields
-        DeviceDetails(fields("parent").convertTo[DeviceCredentialParent], fields("administrativeDomain").convertTo[DeviceCredentialAdministrativeDomain],
-          fields("mediation-server-group").convertTo[DeviceCredentialMediationServerGroup], fields("previous-hop").convertTo[PreviousHop], fields("object-type").convertTo[String],
-          fields("name").convertTo[String], fields("id").convertTo[String], fields("primary-ip").convertTo[String],
-          fields("userid").convertTo[String], fields("password").convertTo[String], fields("vendor-name").convertTo[String], fields("product-name").convertTo[String], fields("product-version").convertTo[String],
-          fields("profile").convertTo[String], fields("office").convertTo[String], fields("location").convertTo[String], fields("chat-userid").convertTo[String], fields("chat-password").convertTo[String],
-          fields("engineid").convertTo[String], fields("auth-password").convertTo[String], fields("privacy-password").convertTo[String], fields("application-monitors-template-id").convertTo[String],
-          fields("network-element-template-id").convertTo[String],
-          fields("node-action-template-id").convertTo[String],
-          fields("primary-port").convertTo[Int],
-          fields("subtended-node").convertTo[String],
-          fields("lastSynchronizationTimestamp").convertTo[String], fields("last-inventory-synchronization-timestamp").convertTo[String],
-          fields("protocol").convertTo[String], fields("connection-state").convertTo[String], fields("device-type").convertTo[String],
-          fields("connection-type").convertTo[String], fields("provisioned-state").convertTo[String], fields("security-level").convertTo[String], fields("auth-protocol").convertTo[String],
-          fields("privacy-protocol").convertTo[String], fields("chat-required").convertTo[Boolean], fields("crlf-required").convertTo[Boolean], fields("SSHuserid").convertTo[String], fields("SSHpassword").convertTo[String],
-          fields("session").convertTo[String], fields("tenantName").convertTo[String], fields("bgp-as-identifier").convertTo[String], fields("ospf-router-id").convertTo[String],
-          fields("alternate-name").convertTo[String], fields("xid").convertTo[String], fields("availability-state").convertTo[String], fields("secondary-ip").convertTo[String], fields("secondary-port").convertTo[String],
-          fields("longitude").convertTo[Double], fields("latitude").convertTo[Double], fields("description").convertTo[String], fields("craft").convertTo[String],
-          fields("availabilitystate-required").convertTo[Boolean])
+         val fields = value.asJsObject.fields.toList.map { case (key, value) =>
+          if(value == JsNull) (key -> None) else (key -> Some(value))
+        }.toMap
+        DeviceDetails(fields("parent").map(_.convertTo[DeviceCredentialParent]), fields("administrativeDomain").map(_.convertTo[DeviceCredentialAdministrativeDomain]),
+          fields("mediation-server-group").map(_.convertTo[DeviceCredentialMediationServerGroup]), fields("previous-hop").map(_.convertTo[PreviousHop]), fields("object-type").map(_.convertTo[String]),
+          fields("name").map(_.convertTo[String]), fields("id").map(_.convertTo[String]), fields("primary-ip").map(_.convertTo[String]),
+          fields("userid").map(_.convertTo[String]), fields("password").map(_.convertTo[String]), fields("vendor-name").map(_.convertTo[String]), fields("product-name").map(_.convertTo[String]), fields("product-version").map(_.convertTo[String]),
+          fields("profile").map(_.convertTo[String]), fields("office").map(_.convertTo[String]), fields("location").map(_.convertTo[String]), fields("chat-userid").map(_.convertTo[String]), fields("chat-password").map(_.convertTo[String]),
+          fields("engineid").map(_.convertTo[String]), fields("application-monitors-template-id").map(_.convertTo[String]),
+          fields("network-element-template-id").map(_.convertTo[String]),
+          fields("node-action-template-id").map(_.convertTo[String]),
+          fields("primary-port").map(_.convertTo[Int]),
+          fields("subtended-node").map(_.convertTo[String]), fields("last-inventory-synchronization-timestamp").map(_.convertTo[String]),
+          fields("protocol").map(_.convertTo[String]), fields("connection-state").map(_.convertTo[String]), fields("device-type").map(_.convertTo[String]),
+          fields("connection-type").map(_.convertTo[String]), fields("provisioned-state").map(_.convertTo[String]), fields("auth-protocol").map(_.convertTo[String]),
+          fields("privacy-protocol").map(_.convertTo[String]), fields("chat-required").map(_.convertTo[Boolean]), fields("crlf-required").map(_.convertTo[Boolean]), fields("SSHuserid").map(_.convertTo[String]), Some(""),
+          fields("session").map(_.convertTo[String]), fields("tenantName").map(_.convertTo[String]), fields("bgp-as-identifier").map(_.convertTo[String]), fields("ospf-router-id").map(_.convertTo[String]),
+          fields("alternate-name").map(_.convertTo[String]), fields("xid").map(_.convertTo[String]), fields("availability-state").map(_.convertTo[String]), fields("secondary-ip").map(_.convertTo[String]), fields("secondary-port").map(_.convertTo[String]),
+          fields("longitude").map(_.convertTo[Double]), fields("latitude").map(_.convertTo[Double]), fields("description").map(_.convertTo[String]), fields("craft").map(_.convertTo[String]),
+          fields("availabilitystate-required").map(_.convertTo[Boolean]))
       }
     }
   }
 
   import DeviceDetails._
- val json = """[{"object-type":"network-element","name":"FTPRSDEA01M","id":"f103fb11-20a1-4217-8e77-32b761bf9225","primary-ip":"192.168.1.47","userid":"","password":"","vendor-name":"Nicira, Inc.","product-name":"Open vSwitch","product-version":"2.3.1-git4750c96","profile":"open-vswitch","office":"","location":"","chat-userid":"","chat-password":"","engineid":"","auth-password":"","privacy-password":"","application-monitors-template-id":"e30bd3ae-9764-484e-aaee-bf8471d55616","network-element-template-id":"c3869363-9d01-491f-b727-8969d489cefa","node-action-template-id":"5a3efef8-b0fb-4b7b-a2db-2e3742fe6c90","parent":{"object-type":"subnetwork","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a"},"administrativeDomain":{"object-type":"administrative-domain","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a","name":"Default"},"primary-port":80,"subtended-node":"","mediation-server-group":{"object-type":"mediation-server-group","id":"743ac2e3-150f-4eb0-b2e2-b8e19bcb7f1a","name":"med"},"lastSynchronizationTimestamp":"Thu July 21 16:26:09 IST 2016","last-inventory-synchronization-timestamp":"Thu July 21 16:26:09 IST 2016","protocol":"None","connection-state":"None","device-type":"Cloud Host","connection-type":"Passive","provisioned-state":"Managed","security-level":"","auth-protocol":"","privacy-protocol":"","chat-required":false,"crlf-required":false,"SSHuserid":"","SSHpassword":"","session":"","tenantName":"","previous-hop":{"object-type":"network-element","id":"","name":""},"bgp-as-identifier":"","ospf-router-id":"","alternate-name":"","xid":"","availability-state":"Available","secondary-ip":"null","secondary-port":"null","longitude":0,"latitude":0,"description":"newDes","craft":"null","availabilitystate-required":true}]"""
+
+  val json = """[{"name":"Do not delete","id":"a0cca2f5-185d-4d68-b929-918df30020dc","primary-ip":"10.10.10.10","primary-port":443,"protocol":"Tl1","session":"Telnet","userid":null,"SSHuserid":null,"password":null,"SSHpassword":null,"connection-state":"Unknown","vendor-name":null,"device-type":"Unknown","product-name":null,"product-version":null,"profile":null,"connection-type":"Direct","office":null,"location":null,"xid":null,"availabilitystate-required":false,"availability-state":"Available","secondary-ip":null,"secondary-port":null,"longitude":0,"latitude":0,"description":null,"provisioned-state":"Managed","chat-required":false,"chat-userid":null,"chat-password":null,"crlf-required":false,"craft":null,"subtended-node":null,"mediation-server-group":{"id":"f4557090-46a1-4dcf-acf5-e6ae0ae1cff0","name":"med","object-type":"mediation-server-group"},"last-inventory-synchronization-timestamp":null,"network-element-template-id":"070ebf2c-8a1d-4df0-8070-f9acb79a7786","application-monitors-template-id":"c9f3a00d-11f7-43dc-8a3c-2c871f538e21","engineid":"","auth-protocol":null,"privacy-protocol":null,"tenantName":null,"previous-hop":{"id":null,"name":null,"object-type":"network-element"},"alternate-name":"","bgp-as-identifier":null,"ospf-router-id":null,"node-action-template-id":"be100ea8-1e63-4441-aee1-a16af92753c4","parent":{"name":"test_discovery","id":"1f0158d8-c50c-4ec0-b1d1-7216721a2115","object-type":"subnetwork"},"administrativeDomain":{"name":"Default","object-type":"administrative-domain"},"object-type":"network-element"}]"""
   val x: List[DeviceDetails] = json.parseJson.convertTo[List[DeviceDetails]]
   println(x)
   val res: List[DeviceDetails] = x.map { x =>
-    x.copy(sSHuserid = "root", sSHpassword = "123paswword")
+    x.copy(sSHuserid = Some("root"), sSHpassword = Some("123paswword"))
   }
 
 
   println(res.toJson)
 }
-
 
 
 //}
