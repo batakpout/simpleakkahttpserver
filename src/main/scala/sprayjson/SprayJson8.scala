@@ -5,9 +5,9 @@ import spray.json.{JsObject, JsValue, RootJsonFormat, _}
 
 object SprayJson8 extends App {
 
-  case class DeviceCredentialParent(objectType: Option[String], id: Option[String])
+  case class DeviceCredentialParent(objectType: Option[String] = None, id: Option[String] = None)
 
-  case class DeviceDetails(dcParent: Option[DeviceCredentialParent], name: Option[String])
+  case class DeviceDetails(dcParent: Option[DeviceCredentialParent] = None, name: Option[String] = None)
 
   object DeviceCredentialParent {
 
@@ -20,10 +20,10 @@ object SprayJson8 extends App {
       }
 
       def read(value: JsValue): DeviceCredentialParent = {
-        val fields = value.asJsObject.fields.toList.map { case (key, value) =>
+        val fields = value.asJsObject.fields/*.toList.map { case (key, value) =>
           if(value == JsNull) (key -> None) else (key -> Some(value))
-        }.toMap
-        DeviceCredentialParent(fields("object-type").map(_.convertTo[String]), fields("id").map(_.convertTo[String]))
+        }.toMap*/
+        DeviceCredentialParent(fields("object-type").convertTo[Option[String]], fields("id").convertTo[Option[String]])
       }
     }
 
@@ -40,10 +40,10 @@ object SprayJson8 extends App {
       }
 
       def read(value: JsValue): DeviceDetails = {
-        val fields = value.asJsObject.fields.toList.map { case (key, value) =>
+        val fields = value.asJsObject.fields/*.toList.map { case (key, value) =>
           if(value == JsNull) (key -> None) else (key -> Some(value))
-        }.toMap
-        DeviceDetails(fields("parent").map(_.convertTo[DeviceCredentialParent]), fields("name").map(_.convertTo[String]))
+        }.toMap*/
+        DeviceDetails(fields("parent").convertTo[Option[DeviceCredentialParent]], fields("name").convertTo[Option[String]])
       }
 
     }
