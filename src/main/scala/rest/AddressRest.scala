@@ -30,9 +30,12 @@ class AddressRest(controller: AddressControllerComponent) extends Directives {
         }
       }
     } ~ get {
+      parameter("use_old".?) { useOld =>
+       if(useOld.isDefined) println("value ==> " + useOld.get) else println("Not value")
       complete {
-        controller.getAddressById("1").map { result =>
-          HttpResponse(status = StatusCodes.OK, entity = HttpEntity(MediaTypes.`application/xml`, AddressParser.parseToXML(result)))
+          controller.getAddressById("1").map { result =>
+            HttpResponse(status = StatusCodes.OK, entity = HttpEntity(MediaTypes.`application/xml`, AddressParser.parseToXML(result)))
+          }
         }
       }
 
